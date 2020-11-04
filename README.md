@@ -4,9 +4,7 @@ It is not mainly designed to parse "normal" expressions.
 A simple example would be the following: 
 
 `Evaluator evaluator = new Evaluator();
-
 evaluator.set_substitutes({"time":current_time()};
-
 evaluator.evaluate("time = 09:00")
 
 The function will check for a substitue for "time" and replace it with the given value.` 
