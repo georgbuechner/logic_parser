@@ -21,11 +21,7 @@ public class Evaluator {
       return true;
 
     //Check if elementary form but in brackets
-    if (expression.charAt(0) == '(' && MatchingBracket(expression) 
-        == expression.length()-1) {
-      expression = expression.substring(0, expression.length()-1);
-      expression = expression.substring(1, expression.length());
-    }
+    expression = EraseSurroundingBrackets(expression);
     System.out.println("Expression: " + expression);
 
     return true;
@@ -43,5 +39,16 @@ public class Evaluator {
     }
     System.out.println("Serious error: MatchingBracket failed!");
     return 0;
+  }
+
+  private String EraseSurroundingBrackets(String str) {
+    //Check if elementary form but in brackets
+    if (str.charAt(0) == '(' && MatchingBracket(str) == str.length()-1) {
+      str = str.substring(0, str.length()-1);
+      str = str.substring(1, str.length());
+    }
+    if (str.charAt(0) == '(') 
+      return EraseSurroundingBrackets(EraseSurroundingBrackets(str));
+    return str;
   }
 };
