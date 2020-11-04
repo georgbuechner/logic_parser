@@ -1,3 +1,7 @@
+/**
+ * @author: georgbuechner
+ */
+
 import java.util.Map;
 import java.util.HashMap;
 
