@@ -13,4 +13,7 @@ The function will check for a substitue for "time" and replace it with the given
 
 More complex expressions should also be possible, f.e.
 
-`(time > 23 || (time < 00:00 && day > 1))`  
+`(time > 23) || ((time > 0) && (day > 1))`
+
+It is expected, that all expression between conjuncors (&&, ||), that is, all logical expression (f.e. (time > 23)) 
+are surrounded by brackets.
