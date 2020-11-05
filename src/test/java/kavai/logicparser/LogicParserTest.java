@@ -24,7 +24,16 @@ public class LogicParserTest
       Map<String, String> params = parser.GetParams(args);
       assertEquals("hello world", params.get("expression"));
       assertEquals(false, params.containsKey("substitute"));
+      
+      String[] args2 = {"hello world"};
+      Map<String, String> params2 = parser.GetParams(args2);
+      assertEquals(0, params2.size());
+      param_types.put("main", "expression");
+      parser = new CommandLineParser(param_types);
+      Map<String, String> params3 = parser.GetParams(args2);
+      assertEquals("hello world", params.get("expression"));
     }
+
     @Test
     public void testLogicParser() {
       LogicParser parser = new LogicParser();
