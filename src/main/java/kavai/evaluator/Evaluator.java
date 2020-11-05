@@ -9,7 +9,7 @@ import org.javatuples.*;
 
 public class Evaluator {
   private String substitutes_ = "{}";
-  private char[] opts_ = {'=', '>', '<'};
+  private char[] opts_ = {'=', '>', '<', '>', '<', '~', ':'};
 
   public void set_substitues (String substitutes) {
     substitutes_ = substitutes;
@@ -28,17 +28,17 @@ public class Evaluator {
 
     //Check if elementary form (f.e. a==b)
     if (expression.indexOf("(") == -1) {
-      Triplet<String, Integer, String> opt_vals = GetOperatorValues(expression);
+      Triplet<String, Character, String> opt_vals = GetOperatorValues(expression);
       System.out.println("Found: ");
       System.out.println(opt_vals.getValue0());
-      System.out.println(expression.charAt(opt_vals.getValue1()));
+      System.out.println(opt_vals.getValue1());
       System.out.println(opt_vals.getValue2());
     }
 
     return true;
   }
 
-  private int MatchingBracket(String str) {
+  public int MatchingBracket(String str) {
     int num=0;
     for (int i=0; i<str.length(); i++) {
       if (str.charAt(i) == '(')
@@ -52,33 +52,35 @@ public class Evaluator {
     return 0;
   }
 
-  private String EraseSurroundingBrackets(String str) {
+  public String EraseSurroundingBrackets(String str) {
     //Check if elementary form but in brackets
     if (str.charAt(0) == '(' && MatchingBracket(str) == str.length()-1) {
       str = str.substring(0, str.length()-1);
       str = str.substring(1, str.length());
     }
+    else 
+      return str;
     if (str.charAt(0) == '(') 
       return EraseSurroundingBrackets(EraseSurroundingBrackets(str));
     return str;
   }
 
-  Triplet<String, Integer, String> GetOperatorValues(String str) {
+  public Triplet<String, Character, String> GetOperatorValues(String str) {
+    char opt = ' ';
     int pos=0;
     for (pos=0; pos<str.length(); pos++) {
-      boolean contains = false;
       for (char c : opts_) {
         if (c == str.charAt(pos)) {
-          contains = true;
+          opt = c;
           break;
         }
       }
-      if (contains == true) break;
+      if (opt != ' ') break;
     }
-    String first = str.substring(0, pos);
-    String second = str.substring(pos+1, str.length());
     if (pos == 0) 
       System.out.println("Serious error: No operator found!");
-    return Triplet.with(first, pos, second);
+    String first = str.substring(0, pos);
+    String second = str.substring(pos+1, str.length());
+    return Triplet.with(first, opt, second);
   }
 };
