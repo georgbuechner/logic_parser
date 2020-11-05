@@ -8,6 +8,7 @@ public class LogicParser{
   public static void main(String[] args) {
     //Create commandline-parser and desired command
     Map<String, String> param_types = new HashMap<>();
+    param_types.put("main", "expression");
     param_types.put("-e", "expression");
     param_types.put("-s", "substitute");
     System.out.println(param_types.get("-e"));
