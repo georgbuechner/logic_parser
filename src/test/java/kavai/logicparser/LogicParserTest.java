@@ -50,11 +50,13 @@ public class LogicParserTest
       assertEquals("x", vals.getValue0());
       assertTrue('=' == vals.getValue1());
       assertEquals("y", vals.getValue2());
-
       vals = logic.GetOperatorValues("test~evaluator");
       assertEquals("test", vals.getValue0());
       assertTrue('~' == vals.getValue1());
       assertEquals("evaluator", vals.getValue2());
+
+      assertEquals(13, logic.MatchingBracket("((a=b)&&(c=d))"));
+      assertEquals(4, logic.MatchingBracket("(a=b)&&((c=d || d=e))"));
     }
 
     @Test
