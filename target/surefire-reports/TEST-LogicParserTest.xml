@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="LogicParserTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="LogicParserTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.9+11-Ubuntu-0ubuntu1.20.04"/>
@@ -63,5 +63,5 @@
   </properties>
   <testcase classname="LogicParserTest" name="testLogicParser" time="0.001"/>
   <testcase classname="LogicParserTest" name="testCommandLineParser" time="0"/>
-  <testcase classname="LogicParserTest" name="testEvaluator" time="0.002"/>
+  <testcase classname="LogicParserTest" name="testEvaluator" time="0.001"/>
 </testsuite>

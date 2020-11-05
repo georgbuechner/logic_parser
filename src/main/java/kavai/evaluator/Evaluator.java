@@ -83,4 +83,21 @@ public class Evaluator {
     String second = str.substring(pos+1, str.length());
     return Triplet.with(first, opt, second);
   }
+
+  public Triplet<String, Character, String> GetKonjuctsValues(String str) {
+    int pos = str.indexOf("(");
+    if (pos == -1) 
+      return (GetOperatorValues(str));
+    else {
+      pos = MatchingBracket(str);
+      System.out.println("Pos: " + pos);
+      char opt = str.charAt(pos+1);
+      System.out.println("Opt: " + opt);
+      String first = str.substring(1, pos);
+      System.out.println("First: " + first);
+      String second = str.substring(pos+2);
+      System.out.println("Second: " + second);
+      return Triplet.with(first, opt, second);
+    }
+  }
 };

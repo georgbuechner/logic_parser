@@ -57,6 +57,11 @@ public class LogicParserTest
 
       assertEquals(13, logic.MatchingBracket("((a=b)&&(c=d))"));
       assertEquals(4, logic.MatchingBracket("(a=b)&&((c=d || d=e))"));
+
+      Triplet<String, Character, String> konjs = logic.GetKonjuctsValues("(x=y)|(y=x)");
+      assertEquals("x=y", konjs.getValue0());
+      assertTrue('|' == konjs.getValue1());
+      assertEquals("(y=x)", konjs.getValue2());
     }
 
     @Test
