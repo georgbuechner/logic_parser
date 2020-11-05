@@ -8,20 +8,23 @@ public class LogicParser{
   public static void main(String[] args) {
     //Create commandline-parser and desired command
     Map<String, String> param_types = new HashMap<>();
+    param_types.put("main", "expression");
     param_types.put("-e", "expression");
     param_types.put("-s", "substitute");
+    System.out.println(param_types.get("-e"));
     CommandLineParser cmd_parser = new CommandLineParser(param_types);
     Map<String, String> params = cmd_parser.GetParams(args);
 
-    if (params.size() == 0) {
-      System.out.println("No params set. Use -e to set expression");
+    if (params.containsKey("expression") == false) {
+      System.out.println("Expression to evaluate missing, use -e "
+          + "\"[expression]\" to set expression.");
       return;
     }
-    if (params.containsKey("expression") == true) {
-      System.out.println("Expression: " + params.get("expression"));
-    }
+    Evaluator evaluator = new Evaluator();
     if (params.containsKey("substitute") == true) {
-      System.out.println("Substitute: " + params.get("substitute"));
+      evaluator.set_substitues(params.get("substitute"));
     }
+    System.out.println(params.get("expression") + ":");
+    System.out.println(evaluator.Evaluate(params.get("expression")));
   }
 }
